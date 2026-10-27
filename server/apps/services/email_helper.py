@@ -71,7 +71,7 @@ def send_otp_email(to_email, username, otp_code):
 
 def send_reset_email(to_email, username, reset_token):
     # Determine external app URL
-    app_url = os.getenv("APP_URL", "http://localhost:5180")
+    app_url = os.getenv("APP_URL", "http://localhost:5180").rstrip("/")
     reset_url = f"{app_url}/reset-password?token={reset_token}"
     
     subject = "FocusTrack - Reset Your Password"

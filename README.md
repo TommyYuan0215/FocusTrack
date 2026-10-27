@@ -281,7 +281,21 @@ DATABASE_PASSWORD=<strong-password>
 MYSQL_ROOT_PASSWORD=<same-strong-password>
 
 FLASK_ENV=production
+
+# Public frontend address used in password reset emails:
+APP_URL=https://focustrack.hoemlab1367.internal
 ```
+
+Set `APP_URL` to the address users open in their browser. Without this setting,
+password reset emails default to `http://localhost:5180`. After changing `.env`
+on an existing deployment, recreate the backend to load the updated environment:
+
+```bash
+docker compose up -d --force-recreate backend
+```
+
+Request a new password reset email after applying the setting; existing emails
+keep their original links.
 
 > ⚠️ **Never deploy with the default `root` password.** Change it before running.
 
